@@ -1,0 +1,45 @@
+Docker
+======
+
+# use the docker file to create the container
+# to open the container in bash mode just to test things
+# like: if boost was installed: find /usr -name libboost*.*
+
+docker run -v <host>:<container> -ti <image> bash
+
+ex: docker run -v e:/Projects/c++_projects/myWebSite:/usr/src/cppbox -ti cppbox:latest bash
+
+# - v option will create a volume
+# <host directory> will be a dir in the host machine (absolute paths)
+# <container directory> the directory on the docker container (absolute paths)
+# <image> the name of the image to run
+
+CMake
+=====
+Under the main folder we will create a CMakeLists.txt file
+We will use cmake 3.7 with standard C++ 17
+
+        cmake_minimum_required(VERSION 3.20)
+
+        project(hello_crow)
+
+        set(CMAKE_CXX_STANDARD 11)
+        set(THREADS_PREFER_PTHREAD_FLAG ON)
+
+        find_package(Boost COMPONENTS system filesystem REQUIRED)
+        find_package(Threads)
+
+        include_directories(${Boost_INCLUDE_DIRS})
+        add_executable(test main.cpp)
+        target_link_libraries(hello_crow ${Boost_LIBRARIES} Threads::Threads)
+
+Then we create a build directory from where we will run the cmake commands:
+- cmake .. (will make the project based on cmake file) - generates a make file
+- we will then call make from the same location (under the build folder) - this will build and link our project
+- the make will generate a hello_crow file in the build dir - this is our executable for our website
+
+
+
+
+https://www.linkedin.com/in/bogdan-ariton-2a0124b8
+https://join.skype.com/invite/IdtQYpYZ21KE
