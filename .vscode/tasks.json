@@ -8,7 +8,7 @@
 			"args": [
 				"--std",
 				"c++2a",
-				"-O0",
+				"-O3",
 				// "-I",
 				// "${workspaceFolder}\\includes",
 				"-g",

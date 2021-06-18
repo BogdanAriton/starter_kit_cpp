@@ -48,8 +48,6 @@ In this example: block: 4 - with distances = 2, 0, 1
 #include <vector>
 #include <algorithm>
 
-
-
 void printVec(const std::vector<std::vector<int>>& vec)
 {
     for (auto& items : vec)
@@ -100,10 +98,11 @@ int main()
             {{"school", false}, {"gym", true}, {"store", true}}};
 
     std::vector<std::string> requirements = { "school", "store" };
+    // have to create a new structure that has these values in order so that we can iterate safely through them
+    auto blocks = transform(strBlocks, requirements);
     // we can then build a vector that hold distances for each item in the map
     // so the vector size will be the same as our blocks vector and each element in the vector can represent each appartment
     // we go through each item in the vector (initialized with -1 for example) and add values based on distances
-    auto blocks = transform(strBlocks, requirements);
     std::vector<std::vector<int>> app_distances(blocks.size(), std::vector<int>(blocks[0].size()+1, -1));
 
     // this will be the postion we store the max element in for each appartment
