@@ -2,8 +2,9 @@
 
 #include <cmath>
 #include <iostream>
+#include <chrono>
 
-static const auto sqrt_5 = std::sqrt(5);
+static const double sqrt_5 = std::sqrt(5);
 
 constexpr uint64_t fib(const int i)
 {
@@ -15,6 +16,10 @@ constexpr uint64_t fib(const int i)
 
 int main()
 {
-    std::cout << fib(100) << '\n';
-
+    volatile int value = 50;
+    auto start = std::chrono::steady_clock::now();
+    std::cout << "fibonacci formula for " << value << " = " << fib(value) << '\n';
+    auto end = std::chrono::steady_clock::now();
+    std::chrono::duration<double> duration = end-start;
+    std::cout << "time elapsed = " << duration.count() << '\n';
 }
