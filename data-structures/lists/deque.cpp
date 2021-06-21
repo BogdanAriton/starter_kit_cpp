@@ -1,4 +1,0 @@
-/*
-Standard offers a double ended queue implementation
-As opposed to a singly linked list the double ended 
-*/
