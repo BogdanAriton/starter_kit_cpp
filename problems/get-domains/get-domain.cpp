@@ -54,7 +54,6 @@ using map =  std::unordered_map<string, int>;
 auto calculateClicksByDomain(const vector<pair<int, string>>& counts) -> map
 {
   unordered_map<string, int> result{}; // this will contain all of the domains and subdomains with their sum
-  
   // cycle through the vector will take the right side and will strip that
   // find(begin, end, [](char ch){}{
   //  return ch == '.';
@@ -70,7 +69,7 @@ auto calculateClicksByDomain(const vector<pair<int, string>>& counts) -> map
       }
       else
         result.insert(pair(item.second, item.first));
-      // 10,mobile.sports.yahoo.com
+        // 10,mobile.sports.yahoo.com
       
       string subdomains = item.second;
       auto posItr = find(subdomains.begin(), subdomains.end(), '.');
@@ -92,7 +91,6 @@ auto calculateClicksByDomain(const vector<pair<int, string>>& counts) -> map
         posItr = find(subdomains.begin(), subdomains.end(), '.');
         //std::cout << *posItr << '\n';
       }
-      
   }
   return result;
 }

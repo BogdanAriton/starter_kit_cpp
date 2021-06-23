@@ -67,7 +67,6 @@ public:
                 ptrNode = current->subNodes.find(word[i]);
             }
             current = (*ptrNode).second.get();
-
         }
     }
 
@@ -136,24 +135,41 @@ public:
 
 int main()
 {
+    //re trie val
     Trie dictionary;
+    /*
+                b ... 27
+                a ... 27
+                n ... 27
+                a d ... 27
+                n a i ... 27
+                a n n ... 27
+                  a a ... 27
+    */
+
     dictionary.insertWord("banana");
-    dictionary.insertWord("cacarocha");
-    dictionary.insertWord("pacopini");
     dictionary.insertWord("bandana");
+    dictionary.insertWord("bandina");
+
+    dictionary.insertWord("cacarocha");
+    dictionary.insertWord("cacadoo");
+
+    dictionary.insertWord("pacopini");
     dictionary.insertWord("pacolache");
     dictionary.insertWord("pacoluna");
     dictionary.insertWord("pacoluniii");
-    dictionary.insertWord("cacadoo");
     //dictionary.printWords();
 
     //std::cout << "pacopini "<< (dictionary.isWord("pacopini") ? "was found" : "was not found") << '\n';
     //std::cout << "pacoluni "<< (dictionary.isPrefix("pacoluni") ? "was found" : "was not found") << '\n';
 
-    auto words = dictionary.getWordsStartWith("c");
-    std::cout << "All word that start with c: " << '\n';
+    auto words = dictionary.getWordsStartWith("paco");
+    
+    std::cout << "All word that start with paco: " << '\n';
     for (auto& word : words)
     {
         std::cout << "  - " << word << '\n';
     }
+
+    //dictionary.printWords();
 }
