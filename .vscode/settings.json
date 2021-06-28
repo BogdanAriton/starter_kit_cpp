@@ -96,6 +96,11 @@
         "semaphore": "cpp",
         "stop_token": "cpp",
         "ranges": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "barrier": "cpp",
+        "charconv": "cpp",
+        "cuchar": "cpp",
+        "latch": "cpp",
+        "syncstream": "cpp"
     }
 }

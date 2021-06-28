@@ -10,38 +10,24 @@ It will only care about the first item that is found in this situation.
 #include <stack>
 #include <deque>
 #include <vector>
+#include <unordered_map>
 
-bool isPair(const char& left, const char& right)
+
+
+bool checkBracket(const std::string& brackets)
 {
-    if (right == ')' && left == '(')
-    {
-        return true;
-    }
-    
-    if (right == ']' && left == '[')
-    {
-        return true;
-    }
+    std::unordered_map<char, char> pairs = { {'{','}'}, {'(',')'}, {'[',']'} };
+    std::unordered_map<char, bool> push = { {'{', true}, {'(', true}, {'[', true}, {'}', false}, {')', false}, {']', false}}; 
 
-    if (right == '}' && left == '{')
-    {
-        return true;
-    }
-
-    return false;
-}
-
-void checkBracket(const std::string& brackets)
-{
     std::stack<std::pair<char, int>> myStack;
     for (int i = 0; i < brackets.size(); ++i)
     {
-        if (brackets[i] == ')' || brackets[i] == ']' || brackets[i] == '}')
+        if (!push[brackets[i]])
         {
             if (!myStack.empty())
             {
                 std::cout << "Found  item: " << brackets[i] << '\n';
-                if (isPair(myStack.top().first, brackets[i]))
+                if (pairs[myStack.top().first] == brackets[i])
                 {
                     std::cout << "Poping item: " << myStack.top().first << '\n';
                     myStack.pop();
@@ -49,9 +35,10 @@ void checkBracket(const std::string& brackets)
                 else
                 {
                     std::cout << "Element " << brackets[i] << " at position: " << i << " has no corresponding opening" << '\n';
-                    return;
+                    return false;
                 }
             }
+            else return false; // we start with a closed bracket
         }
         else
         {
@@ -59,6 +46,8 @@ void checkBracket(const std::string& brackets)
             myStack.push({brackets[i], i});
         }
     }
+
+    if (myStack.empty()) return true;
 
     while (!myStack.empty())
     {
@@ -68,7 +57,7 @@ void checkBracket(const std::string& brackets)
             myStack.pop();
         }
     }
-    return;
+    return false;
 }
 
 int main()
@@ -82,6 +71,10 @@ int main()
     // bad case : {(})}
     // bad case: {[{{{{(((())))}}}}}]}
     
-    checkBracket("{{[{{{{(((())))}}}}]}");
+    if (checkBracket("{([{(){()}}])}")) 
+    {
+        std::cout << "The brackets are ballenced" << '\n';
+    };
+    
     
 }
