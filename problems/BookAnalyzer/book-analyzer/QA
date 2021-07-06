@@ -1,0 +1,23 @@
+Q: How did you choose your implementation language?
+A: I've chosen C++ because it's my favorite language and incidentally it works well with large amounts of data.
+
+Q: How did you arrive at your final implementation? Were there other approaches that you
+considered or tried first?
+A: I've started with just a brute force implementation to try to better understand the analyzer rules, then I wanted to split the code into different classes based on responsibilities while keeping them sufficiently decoupled so that the code shouldn't suffer too many changes with new requirements.
+In the end, the implementation is using a std:queue with the producer-consumer pattern that controls access to the queue. The queue is implemented in the Book header.
+I start two separate threads, from the main function, one for producer and one for the consumer:
+    - The producer will add items to the queue and notify a consumer (we only have one) that an item is available.
+    - The consumer will try to get items from the queue and waits if there are no items in the queue.
+
+I've separated Asks and Bids from the Book and I'm analyzing them separately based on the type of entry that changes the orders.
+I'm using hash tables to store asks and bids so that I can retain the state between new entries.
+The analyzer (from analyzer.h) is in charge of the operations on the two types of orders and stands between the main program and the rest of the implementation.
+
+Notes: I've used boost (1.7) to easily grab the input parameter (target-size) - the program_options component makes it easy to add new things.
+
+Q: How does your implementation scale with respect to the target size?
+A: In terms of time and space complexity we are mostly dependent on the numbers of orders in the book. The target size is used to determine if we can calculate a new income, thus it's relative to the number of orders parsed at any given time and since we can only have n/2 at most for each type of order we get O(n) time which is linear and there is no addition of space.
+
+Q: How does your implementation scale with respect to the number of orders in the book?
+A: In terms of time complexity if we consider the input data as having n elements then we're going to spend time relative to the number of elements which is considered to be linear time O(n)
+   In terms of space complexity, it can calculate space as n/2 (maximum number that hash table will have) + n-(current numbers in both hash tables) where n is the numbers of orders that come in. This can be in the worst case O(n+n).

@@ -43,3 +43,19 @@ Architecture:
 # threads
     Independent path of execution through the program
     
+    Lifecycle:
+        new thread 
+        runnable block
+        terminated
+    
+## join()
+    Waits for another thread to finish
+    It blocks the current thread
+
+## joinable()
+    Returns whether a thread is joinable.
+
+# detached
+    Daemon thread - will not prevent the process from exiting
+    When a process ends while daemon threads still execute these threads will also terminate - thus we have to think about what the threads could be doing during termination.
+    .detach() will make the thread non-joinable.

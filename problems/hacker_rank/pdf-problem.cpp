@@ -14,9 +14,9 @@ using namespace std;
 unordered_map<char, int> mapLetterToHeights(const vector<int>& heights)
 {
     unordered_map<char, int> letterHeights{};
-    int i = 97;
+    int i = 'a'; // 'a'
     int j = 0;
-    while (i <= 122)
+    while (i <= 'z')
     {
         letterHeights.emplace(pair(i, heights[j]));
         i++;

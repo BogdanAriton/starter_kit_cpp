@@ -61,9 +61,10 @@ void printVector(const std::vector<T>& vector)
     std::cout << ']' << '\n';
 }
 
+
 int main()
 {
-    printVector(bestSum(7, {1, 2, 3, 4, 5, 6, 7}, [](int min, int current){return min < current;}));
+    printVector(bestSum(7, {1, 2, 3, 4, 5, 6, 7}, [](int min, int current){return min = current;}));
     printVector(bestSum(10, {1, 2, 4, 4, 5, 6, 9}, [](int min, int current){return min < current;}));
     printVector(bestSum(8, {1, 2, 4, 4}, [](int min, int current){return min < current;}));
     printVector(bestSum(100, {1, 2, 3, 4, 5, 6, 7, 15, 20, 25, 30, 50}, [](int min, int current){return min < current;}));
