@@ -11,6 +11,7 @@
 				"-O0",
 				"-g",
 				"${file}",
+				"-Ie:/sdk/googletest-release-1.11.0/googletest/include",
 				"-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe"
 			],

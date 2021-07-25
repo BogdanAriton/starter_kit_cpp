@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <numeric>
 
 struct MyCollection
 {
@@ -43,6 +44,14 @@ int main()
     });
 
     std::cout << noOnes << '\n';
-/* enumerate and accumulate*/
+/* enumerate and accumulate
+*/
+    int total = accumulate(begin(a), end(a), 0, [](int x, int i){ return i < 6; });
+    //std::cout << "accumulate total =" << total << '\n';
 
+    std::string words[] = {"word1", "word2", "word3"};
+    string twords = accumulate(begin(words), end(words), string("words are ="), 
+    [](const string& total, const string& i) { return total + " " + i;});
+
+    cout << twords << '\n';
 }

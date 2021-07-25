@@ -26,5 +26,10 @@ you have create a static class inner to your original class that will access the
 It is a copy constructor and a copy assignment operator.
 Or a clone function in Java that returns a new object that will be the same as the one is cloned from.
 
+Reiterate existing design.
+Cloning can be made via a Factory.
+
+A partially initialized object that you copy.
+
 # singleton
 Just one object that can be use as a global one for the app

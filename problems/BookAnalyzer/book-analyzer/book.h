@@ -31,12 +31,6 @@ public:
     }
 
 private:
-    void popFront() noexcept
-    {
-        std::unique_lock<std::mutex> lock(book_look);
-        bookStream.pop();
-    }
-
     mutable std::mutex book_look;
     std::queue<EntryData> bookStream{};
     std::condition_variable book_consumer;

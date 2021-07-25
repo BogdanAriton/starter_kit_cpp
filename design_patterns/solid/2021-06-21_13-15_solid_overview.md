@@ -28,6 +28,8 @@ SOLID:
         - a very good counter-example of this is MFC where everything is a CWnd, but you cannot really use CWnd on its own and you cannot replace CWnd with anything
 
     D: Dependency inversion principle (DIP)
+    High level modules should not depend on low level modules.
+        As am example: A Module in your code should not get a dependency from an implemented logger - you should depend on an abstraction of that logger just in case the logger changes.
         - this is an important one and is more related to how you architect your code
         - you have to think about this in a way that relates to who hold responsibility for what, for example, in MVC design you should have the model as your business logic that will change less than controllers and view so that they depend directly on Model - this way you have inverted the dependency between view and Model so that model doesn't depend on view, but rather the other way around
         - another important point to that dependencies should be made between abstraction and you should avoid having a higher-level abstraction depend on the implementation
