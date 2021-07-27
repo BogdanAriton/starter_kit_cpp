@@ -40,6 +40,7 @@ TEST_F(MainTests, testDistance)
     ASSERT_TRUE(distanceCalculator.distance(p1, p2) < distanceCalculator.distance(p2, p3));
     ASSERT_TRUE(distanceCalculator.distance(p1, p3) > distanceCalculator.distance(p2, p3));
     ASSERT_FALSE(distanceCalculator.distance(p3, p2) < distanceCalculator.distance(p2, p1));
+    EXPECT_GT(distanceCalculator.distance({13,23}, {15,21}), distanceCalculator.distance({41,84}, {45,86}));
 }
 
 TEST_F(MainTests, testSmallestDistance)
