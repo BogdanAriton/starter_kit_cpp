@@ -4,7 +4,7 @@ vector<Point> = {{1, 4}, {4,4}, {3,2}, {5,1}}
 */
 #include <vector>
 #include <iostream>
-#include "myproject.hpp"
+#include "closest_points.hpp"
 
 int main()
 {

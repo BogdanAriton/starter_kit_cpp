@@ -17,12 +17,12 @@ add_subdirectory(googletest)
 
 # put all headers here
 set (Headers
-myproject.hpp
+closest_points.hpp
 )
 
 # put all sources here
 set (Sources
-myproject.cpp
+closest_points.cpp
 )
 
 # creating main as an executable and the rest of the code as static library linked to main and linked with the test

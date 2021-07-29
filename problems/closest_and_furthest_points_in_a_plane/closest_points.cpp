@@ -1,7 +1,6 @@
-#include "myproject.hpp"
+#include "closest_points.hpp"
 #include <math.h>
 
-// 0(n2) 
 MainMaxPairs PointHandler::calcultateDistance(const std::vector<Point>& points) const
 {
     if (points.empty()) return {};

@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../myproject.hpp"
+#include "../closest_points.hpp"
 
 // adding a test fixture
 struct MainTests : public ::testing::Test
