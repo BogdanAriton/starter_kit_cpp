@@ -12,15 +12,6 @@ int main()
     //std::vector<Point> points = {{3,3}, {4,4}, {5,6}, {5,8}, {11, 6}, {14,3}, {17,7}, {8,8}, {10,6}};
     //std::vector<Point> points =  {{2, 3}, {12, 30}, {40, 50}, {5, 1}, {12, 10}, {3, 4}};
     PointsOperations distanceCalculator;
-
-    auto start = std::chrono::high_resolution_clock::now();
-    auto minMax = distanceCalculator.calculateMinMaxDistance(points);
-    std::cout << "min distance = " << minMax.first.first << " " << minMax.first.second << '\n';
-    //std::cout << "max distance = " << minMax.second.first << " " << minMax.second.second << '\n';
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> dur = end - start;
-    std::cout << "time elapsed = " << dur.count() << '\n';
-
     auto startDC = std::chrono::high_resolution_clock::now();
     auto min = distanceCalculator.divideAndConquer(points);
     std::cout << " divide and conquer min = " << min.first << " " << min.second << '\n';
