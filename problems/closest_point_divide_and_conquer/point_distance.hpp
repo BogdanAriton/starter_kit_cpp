@@ -15,7 +15,7 @@ using maxPair = std::pair<Point, Point>;
 
 class PointsOperations
 {
-    double recursiveDivideAndConquer(const std::vector<Point>& points, size_t start, size_t end, pointPair& pair) const;
+    double recursiveDivideAndConquer(const std::vector<Point>& points, size_t start, size_t end, pointPair& pair, const std::vector<Point>& Y) const;
     pointPair recursiveDivideAndConquer(const std::vector<Point>& X, const std::vector<Point>& Y) const;
     std::vector<Point> getPointsInDeltaSection(const std::vector<Point>& points, double delta) const;
     double bruteForce(const std::vector<Point>& points, size_t start, size_t end, pointPair& pair) const noexcept;

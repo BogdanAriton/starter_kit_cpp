@@ -32,10 +32,10 @@ pointPair PointsOperations::calculateDistance(const std::vector<Point>& points, 
 std::pair<minPair, maxPair> PointsOperations::calculateMinMaxDistance(const std::vector<Point>& points) const noexcept
 {
     if (points.empty()) return {};
-    double minDistance, maxDistance;
-    minDistance = maxDistance = this->distance(points[0], points[1]);
+    double minDistance;//, maxDistance;
+    minDistance /*= maxDistance*/ = this->distance(points[0], points[1]);
     minPair minPair = {points[0], points[1]};
-    maxPair maxPair = {points[0], points[1]};
+    //maxPair maxPair = {points[0], points[1]};
     // going through each pair of points to try to find the distance we need
     for (size_t i = 0; i < points.size()-1; ++i)
     {
@@ -48,15 +48,15 @@ std::pair<minPair, maxPair> PointsOperations::calculateMinMaxDistance(const std:
                 minPair = {points[i], points[j]};
             }
 
-            if (maxDistance < currentDistance)
-            {
-                maxDistance = currentDistance;
-                maxPair = {points[i], points[j]};
-            }
+            // if (maxDistance < currentDistance)
+            // {
+            //     maxDistance = currentDistance;
+            //     maxPair = {points[i], points[j]};
+            // }
         }
     }
 
-    return {minPair, maxPair};
+    return {minPair, minPair}; //, maxPair};
 }
 
 pointPair PointsOperations::divideAndConquer(const std::vector<Point>& points) const
@@ -93,36 +93,27 @@ std::vector<Point> PointsOperations::getPointsInDeltaSection(const std::vector<P
     return deltaSection;
 }
 
-double PointsOperations::recursiveDivideAndConquer(const std::vector<Point>& points, size_t start, size_t end, pointPair& pair) const
+double PointsOperations::recursiveDivideAndConquer(const std::vector<Point>& points, size_t start, size_t end, pointPair& pair, const std::vector<Point>& Y) const
 {
     // the exit point is if we have 3 or 2 points left
     if ((end - start) <= 3) return bruteForce( points, start, end , pair);
     size_t middle = start + ((end - start)/2);
-    double distanceLeft = recursiveDivideAndConquer(points, start, middle - 1, pair);
+    double distanceLeft = recursiveDivideAndConquer(points, start, middle - 1, pair, Y);
     pointPair leftPair = pair;
     //std::cout << "left pair found = " << leftPair.first << leftPair.second << " ";
     //std::cout << '\n';
-    double distanceRight = recursiveDivideAndConquer(points, middle, end, pair);
+    double distanceRight = recursiveDivideAndConquer(points, middle, end, pair, Y);
     pointPair rightPair = pair;
     //std::cout << "right pair found = " << rightPair.first << rightPair.second << " ";
     //std::cout << '\n';
-    
+
+    double delta = distanceRight;
+    pair = rightPair;
     if (distanceLeft <= distanceRight)
     {
         pair = leftPair;
-        return distanceLeft;
+        delta = distanceLeft;
     }
-    else
-    {
-        pair = rightPair;
-        return distanceRight;
-    }
-}
-
-pointPair PointsOperations::recursiveDivideAndConquer(const std::vector<Point>& X, const std::vector<Point>& Y) const
-{
-    pointPair minPoints = {};
-    double delta = recursiveDivideAndConquer(X, 0 , X.size()-1, minPoints);
     // in the middle point we have the imaginary line
     //std::cout << "minPoints " << minPoints.first << minPoints.second << '\n';
     //std::cout << "delta " << delta << '\n';
@@ -142,11 +133,17 @@ pointPair PointsOperations::recursiveDivideAndConquer(const std::vector<Point>& 
             if (delta > currentDistance)
             {
                 delta = currentDistance;
-                minPoints = {pointsInDeltaSection[i], pointsInDeltaSection[j]};
+                pair = {pointsInDeltaSection[i], pointsInDeltaSection[j]};
             }
         }
     }
+    return delta;
+}
 
+pointPair PointsOperations::recursiveDivideAndConquer(const std::vector<Point>& X, const std::vector<Point>& Y) const
+{
+    pointPair minPoints = {};
+    recursiveDivideAndConquer(X, 0 , X.size()-1, minPoints, Y);
     return minPoints;
 }
 
