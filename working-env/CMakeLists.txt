@@ -27,7 +27,7 @@ myproject.cpp
 
 # creating main as an executable and the rest of the code as static library linked to main and linked with the test
 add_library(${PROJECT_NAME} STATIC ${Sources} ${Headers})
-add_executable(main private-inheritance.cpp)
+add_executable(main main.cpp)
 
 target_link_libraries(main ${PROJECT_NAME})
 
