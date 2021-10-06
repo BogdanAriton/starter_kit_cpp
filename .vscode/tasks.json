@@ -4,19 +4,15 @@
 		{
 			"type": "cppbuild",
 			"label": "C/C++: g++.exe build active file",
-			"command": "C:\\mingw64\\bin\\g++.exe",
+			"command": "C:\\msys64\\mingw64\\bin\\g++.exe",
 			"args": [
-				"--std",
-				"c++17",
-				"-O0",
 				"-g",
 				"${file}",
-				"-Ie:/sdk/googletest-release-1.11.0/googletest/include",
 				"-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe"
 			],
 			"options": {
-				"cwd": "C:\\mingw64\\bin"
+				"cwd": "${fileDirname}"
 			},
 			"problemMatcher": [
 				"$gcc"
@@ -25,7 +21,7 @@
 				"kind": "build",
 				"isDefault": true
 			},
-			"detail": "compiler: C:\\mingw64\\bin\\g++.exe"
+			"detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
 		}
 	]
 }
